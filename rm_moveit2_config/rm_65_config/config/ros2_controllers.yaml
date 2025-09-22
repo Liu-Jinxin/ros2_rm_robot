@@ -3,9 +3,13 @@ controller_manager:
   ros__parameters:
     update_rate: 100  # Hz
 
+    # 轨迹控制器（用于MoveIt）
     rm_group_controller:
       type: joint_trajectory_controller/JointTrajectoryController
 
+    # 位置控制器（用于实时角度控制）
+    position_controller:
+      type: forward_command_controller/ForwardCommandController
 
     joint_state_broadcaster:
       type: joint_state_broadcaster/JointStateBroadcaster
@@ -24,3 +28,14 @@ rm_group_controller:
     state_interfaces:
       - position
       - velocity
+
+position_controller:
+  ros__parameters:
+    joints:
+      - joint1
+      - joint2
+      - joint3
+      - joint4
+      - joint5
+      - joint6
+    interface_name: position
